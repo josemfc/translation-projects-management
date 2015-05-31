@@ -25,7 +25,7 @@ SECRET_KEY = os.environ["SECRET_KEY"]
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = []
+#ALLOWED_HOSTS = []
 
 
 # Application definition
@@ -116,6 +116,17 @@ SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 # Allow all host headers
 ALLOWED_HOSTS = ['*']
 
+# Dirección a la que redirecciona el decorator @login_required
+LOGIN_URL = '/proyectos/login/'
+
+# Para enviar email
+EMAIL_USE_TLS = True
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'chema27390@gmail.com'
+EMAIL_HOST_PASSWORD = 'zfvyheblsakdolpj'
+DEFAULT_FROM_EMAIL = 'chema27390@gmail.com'
+
 # Media
 #MEDIA_ROOT = '
 MEDIA_URL = '/proyectos/media/'
@@ -123,7 +134,8 @@ MEDIA_URL = '/proyectos/media/'
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.8/howto/static-files/
 STATIC_ROOT = 'staticfiles'
-STATIC_URL = '/proyectos/static/'
+#STATIC_URL = '/static/'
+STATIC_URL = 'https://infinite-wildwood-4098.herokuapp.com/proyectos/'
 
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'static'),
