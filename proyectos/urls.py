@@ -26,7 +26,3 @@ urlpatterns = patterns('',
     url(r'^usuarios/(?P<id_usuario>\d+)/baja/$', views.baja, name='baja'),
 )
 
-"""if settings.DEBUG:
-    urlpatterns += patterns('',
-        (r'^proyectos/media/(?P<path>.*)$', 'django.views.static.serve', {
-        'document_root': settings.MEDIA_ROOT}))"""
