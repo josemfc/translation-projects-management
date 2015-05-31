@@ -23,7 +23,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = os.environ["SECRET_KEY"]
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 TEMPLATE_DEBUG = DEBUG
 
 #ALLOWED_HOSTS = []
@@ -106,6 +106,9 @@ USE_L10N = True
 
 USE_TZ = True
 
+
+# Se necesita la siguiente variable de entorno:
+# heroku config:set DJANGO_SETTINGS_MODULE=traducciones.settings
 
 # Parse database configuration from $DATABASE_URL
 import dj_database_url

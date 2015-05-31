@@ -1,2 +1,0 @@
-recursive-include djangoformsetjs/static *
-include LICENSE
