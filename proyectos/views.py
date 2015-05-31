@@ -1,3 +1,5 @@
+# coding=utf-8
+
 from django.shortcuts import get_object_or_404, render, redirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import Group, Permission
