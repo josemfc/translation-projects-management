@@ -20,10 +20,10 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/1.8/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'u@mgiu0))#9lj=ba3il2n@n-$tdx6d6to48geg=)r&w&5-unuw'
+SECRET_KEY = os.environ["SECRET_KEY"]
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = []
 
@@ -83,7 +83,7 @@ DATABASES = { # LOCAL
     }
 }
 
-# Heroku usa Postgres. Para que adaptar la BD sqlite3:
+# Heroku usa Postgres. Para que adaptar la BD sqlite3: (mejor la forma al final)
 """import dj_database_url
 DATABASES = {
     'default': dj_database_url.config(

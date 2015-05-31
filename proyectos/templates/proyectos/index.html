@@ -62,7 +62,7 @@
 	
 {% else %}		<!-- No hay sesión activa -->
 	<h1>Gestión de proyectos de traducción</h1>
-	<h2>Por favor, <a href="{% url 'proyectos:nuevo_proyecto' %}">inicie sesión</a> para acceder a la plataforma.</h2>
+	<h2>Por favor, <a href="{% url 'proyectos:login' %}">inicie sesión</a> para acceder a la plataforma.</h2>
 {% endif %}
 {% endblock %}
 

@@ -28,10 +28,10 @@ class NuevoUsuarioForm (forms.Form):
 	email = forms.EmailField(label='Correo electrónico',
 								required   = True,
 								)
-	password = forms.CharField (label = 'Contraseña',
+	"""password = forms.CharField (label = 'Contraseña',
 								max_length = 20,
 								widget=forms.PasswordInput(),
-								)
+								)"""
 	es_pm = forms.BooleanField(label = 'Project Manager',
 								required = False)
 				

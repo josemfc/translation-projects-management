@@ -5,6 +5,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import Group, Permission
 from django.contrib.auth.decorators import login_required, permission_required, user_passes_test
 from django.forms.formsets import formset_factory
+from django.core.urlresolvers import reverse
 from django.core.mail import send_mail
 from django.conf import settings
 
@@ -140,23 +141,23 @@ def tarea(request, id_proyecto, id_tarea):
 				tarea.original = request.FILES['original']
 				subido = True
 				
-				"""# Enviar notificación a quien tiene la tarea asignada
-				path = 'http://127.0.0.1:8000/proyectos/' + id_proyecto + '/' + id_tarea + '/'
+				# Enviar notificación a quien tiene la tarea asignada
+				path = request.build_absolute_uri(reverse('proyectos:tarea', args=[id_proyecto, id_tarea]))
 				mensj = "Le informamos de que tiene disponible los archivos de una tarea asignada a usted. Puede seguir el siguiente enlace para verlos:\n\n" + path
 				email_dest = tarea.asignada_a.email
 				
-				send_mail('Tarea disponible', mensj, settings.DEFAULT_FROM_EMAIL, [email_dest], fail_silently=False)"""
+				send_mail('Tarea disponible', mensj, settings.DEFAULT_FROM_EMAIL, [email_dest], fail_silently=False)
 				
 			if 'traducido' in request.FILES:
 				tarea.traducido = request.FILES['traducido']
 				subido = subido_trad = True
 				
-				"""# Notificar al PM que se ha terminado la tarea
-				path = 'http://127.0.0.1:8000/proyectos/' + id_proyecto + '/' + id_tarea + '/'
+				# Notificar al PM que se ha terminado la tarea
+				path = request.build_absolute_uri(reverse('proyectos:tarea', args=[id_proyecto, id_tarea]))
 				mensj = "Le informamos de que tiene disponible los archivos de una tarea terminada. Puede seguir el siguiente enlace para verlos:\n\n" + path
 				email_dest = proyecto.creador.email
 				
-				send_mail('Tarea disponible', mensj, settings.DEFAULT_FROM_EMAIL, [email_dest], fail_silently=False)"""
+				send_mail('Tarea disponible', mensj, settings.DEFAULT_FROM_EMAIL, [email_dest], fail_silently=False)
 			
 			if subido:
 				if subido_trad:
@@ -268,8 +269,7 @@ def usuarios(request):
 			
 			new_user = User.objects.create_user(form.cleaned_data['username'],
                                   form.cleaned_data['email'],
-                                  #password=p,)
-                                  form.cleaned_data['password']) # QUITAR y descomentar lo de encima
+                                  password=p,)
 			new_user.first_name = form.cleaned_data['nombre']
 			new_user.last_name = form.cleaned_data['apellidos']
 			new_user.save()
@@ -278,11 +278,11 @@ def usuarios(request):
 				g = Group.objects.get(name='Project Managers') 
 				g.user_set.add(new_user)
 			
-			"""# Enviar notificación y contraseña al nuevo usuario
-			path = "http://127.0.0.1:8000"
+			# Enviar notificación y contraseña al nuevo usuario
+			path = request.build_absolute_uri(reverse('proyectos:login'))
 			mensj = "Le informamos de que se ha completado su registro en la web: \n\nUsuario: " + form.cleaned_data['username'] + "\nContraseña: " + p + "\n\nSe recomienda cambiar de contraseña. Puede seguir el siguiente enlace para acceder a la plataforma:\n\n" + path				
 			send_mail('Bienvenido a la web de proyectos de traducción', mensj, settings.DEFAULT_FROM_EMAIL, [form.cleaned_data['email']], fail_silently=False)
-			"""
+			
 			return redirect('proyectos:index')
 
 		else:
