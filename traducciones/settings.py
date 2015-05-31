@@ -76,12 +76,12 @@ WSGI_APPLICATION = 'traducciones.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/1.8/ref/settings/#databases
-"""DATABASES = { # LOCAL
+DATABASES = { # LOCAL
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
-}"""
+}
 
 # Heroku usa Postgres. Para que adaptar la BD sqlite3:
 """import dj_database_url
