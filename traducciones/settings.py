@@ -135,16 +135,18 @@ MEDIA_URL = '/media/'
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.8/howto/static-files/
 STATIC_ROOT = 'staticfiles'
-#STATIC_URL = '/static/'
-STATIC_URL = 'https://infinite-wildwood-4098.herokuapp.com/'
+STATIC_URL = '/static/'
+#STATIC_URL = 'https://infinite-wildwood-4098.herokuapp.com/'
 
 STATICFILES_DIRS = (
-    os.path.join(BASE_DIR, 'proyectos/static'),
+    os.path.join(BASE_DIR, 'static'),
 )
+
+# Simplified static file serving.
+# https://warehouse.python.org/project/whitenoise/
+STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
 
 STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.FileSystemFinder',
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
-#    'django.contrib.staticfiles.finders.DefaultStorageFinder',
-#    'compressor.finders.CompressorFinder',
 )
