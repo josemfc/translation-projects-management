@@ -26,3 +26,6 @@ urlpatterns = patterns('',
     url(r'^usuarios/(?P<id_usuario>\d+)/baja/$', views.baja, name='baja'),
 )
 
+urlpatterns += patterns('',
+ (r'^static/(?P.*)$', 'django.views.static.serve', {'document_root': settings.STATIC_ROOT}),
+ )

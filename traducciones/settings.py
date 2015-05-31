@@ -129,16 +129,16 @@ DEFAULT_FROM_EMAIL = 'chema27390@gmail.com'
 
 # Media
 #MEDIA_ROOT = '
-MEDIA_URL = '/proyectos/media/'
+MEDIA_URL = '/media/'
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.8/howto/static-files/
 STATIC_ROOT = 'staticfiles'
-#STATIC_URL = '/static/'
-STATIC_URL = 'https://infinite-wildwood-4098.herokuapp.com/proyectos/'
+STATIC_URL = '/static/'
+#STATIC_URL = 'https://infinite-wildwood-4098.herokuapp.com/proyectos/'
 
 STATICFILES_DIRS = (
-    os.path.join(BASE_DIR, 'static'),
+    os.path.join(BASE_DIR, 'proyectos/static'),
 )
 
 STATICFILES_FINDERS = (
