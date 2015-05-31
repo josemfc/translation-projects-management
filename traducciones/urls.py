@@ -9,5 +9,5 @@ urlpatterns = patterns('',
 	url(r'^$', views.index),
 	url(r'^admin/', include(admin.site.urls)),
 	url(r'^proyectos/', include('proyectos.urls', namespace="proyectos"))
-) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) # Donde se guardan archivos
+)# + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) # Donde se guardan archivos
 
