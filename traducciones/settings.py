@@ -23,7 +23,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'u@mgiu0))#9lj=ba3il2n@n-$tdx6d6to48geg=)r&w&5-unuw'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = []
 
@@ -76,7 +76,6 @@ WSGI_APPLICATION = 'traducciones.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/1.8/ref/settings/#databases
-import dj_database_url
 """DATABASES = { # LOCAL
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
@@ -85,6 +84,7 @@ import dj_database_url
 }"""
 
 # Heroku usa Postgres. Para que adaptar la BD sqlite3:
+import dj_database_url
 DATABASES = {
     'default': dj_database_url.config(
         default='sqlite:////{0}'.format(os.path.join(BASE_DIR, 'db.sqlite3'))
