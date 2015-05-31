@@ -1,0 +1,51 @@
+{% extends 'proyectos/base.html' %}
+
+{% block content %}
+	<!-- Datos del usuario -->
+	<h1>{{ usuario.username }}</h1>
+	<table class="table table-hover">
+		<tr class="active">
+			<th>Nombre</th>
+			<th>Apellidos</th>
+			<th>email</th>
+			<th>Último acceso</th>
+			<th>Fecha de alta</th>
+		</tr>
+
+			<tr>
+				<td>{{ usuario.first_name }}</td>
+				<td>{{ usuario.last_name }}</td>
+				<td>{{ usuario.email }}</td>
+				<td>{{ usuario.last_login }}</td>
+				<td>{{ usuario.date_joined }}</td>
+			</tr>
+	</table>
+
+	{% if perms.auth.es_project_manager %}
+		<br><br>
+		<p>Número de tareas asignadas al usuario sin terminar: {{ num_tareas }}</p>
+		<br><br>
+		<a href="{% url 'proyectos:baja' usuario.id %}"> 
+			<button id="eliminar" type="button" class="btn btn-danger">Dar de baja</button>
+		</a>
+		<br><br>
+	{% endif %}
+
+	<!-- Formulario para cambiar de contraseña -->
+	{% if user.username == usuario.username %}
+		<button class="nuevo_form btn btn-info">Cambiar contraseña</button>
+		<div class="formulario">
+			<h2>Cambiar contraseña</h2>
+			<form role="form" method="post" action="">
+				{% csrf_token %}
+
+				<table class="table table-hover">
+					{{ form.as_table }}
+				</table>
+
+				<input type="submit" class="btn btn-primary" value="Enviar">
+			</form>
+		
+	</div>
+	{% endif %}
+{% endblock %}

@@ -1,0 +1,20 @@
+{% extends 'proyectos/base.html' %}
+
+{% block content %}
+
+	<form class="form-signin" method="post" action="">
+		{% csrf_token %}
+
+		<h2 class="form-signin-heading">Introduzca sus datos</h2>
+		{% if mensaje %}
+			<p style="Color: red">{{ mensaje }}</p>
+		{% endif %}
+		
+		<table>
+			{{ form.as_table }}
+		</table>
+		<br>
+		
+		<button class="btn btn-lg btn-primary btn-block" type="submit">Conectarse</button>
+	</form>
+{% endblock %}

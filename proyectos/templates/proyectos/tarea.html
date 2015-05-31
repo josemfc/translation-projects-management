@@ -1,0 +1,53 @@
+{% extends 'proyectos/base.html' %}
+
+
+{% block content %}
+{% if proyecto.creador.id == user.id or tarea.asignada_a.id == user.id %}
+	<h1>{{ tarea.nombre }}</h1>
+	{% if tarea.comentario %}
+		<p><b>Comentario:</b> {{tarea.comentario}}</p>
+	{% endif %}
+	<hr>
+
+	<!-- Mostrar archivos ya subidos si hay -->
+	<h3>Listado de archivos existentes</h3>
+	{% if tarea.original %}
+		<div class="list-group" id="archivos">
+			<a href="{{ tarea.original.url }}" class="list-group-item"><b>Original:</b> {{ tarea.filename_o }}</a>
+			{% if tarea.traducido %}
+				<a href="{{ tarea.traducido.url }}" class="list-group-item"><b>Traducción/Revisión:</b> {{ tarea.filename_t }}</a>
+			{% endif %}
+		</div>
+	{% else %}
+		<p>No hay archivos en esta tarea.</p>
+	{% endif %}
+	<hr>
+	<br>
+
+	<!-- Formulario para subir archivos -->
+	<h3>Subir o sustituir archivos</h4>
+	<form action="{% url 'proyectos:tarea' proyecto.id tarea.id %}" method="post" enctype="multipart/form-data">
+		{% csrf_token %}
+		
+		{% if perms.auth.es_project_manager %}
+			<h4>Original:</h4>
+			{{ form.original }}
+		{% endif %}
+		<br>
+		
+		{% if user.id == tarea.asignada_a.id and tarea.original %}
+			<h4>Traducción/revisión:</h4>
+			{{ form.traducido }}
+		{% endif %}
+		
+		{% if perms.auth.es_project_manager or tarea.original %}
+			<br>
+			<input type="submit" class="btn btn-primary" value="Subir archivo" />
+		{% endif %}
+	</form>
+	
+{% else %}
+	<h2><b>Aviso:</b> Sólo el PM creador de este proyecto (<a href="{%url 'proyectos:usuario' proyecto.creador.id %}">{{ proyecto.creador.username }}</a>) y el usuario asignado pueden visualizar esta página.</h2>
+{% endif %}
+{% endblock %}
+

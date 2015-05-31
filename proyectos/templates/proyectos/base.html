@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    {% load staticfiles %}
+    
+	<title>Gestión de proyectos de traducción</title>
+	
+	<link rel="stylesheet" type="text/css" href="{% static 'proyectos/style.css' %}" />
+
+	<!-- Bootstrap includes -->
+	<link rel="stylesheet" type="text/css" href="{% static 'proyectos/bootstrap.min.css' %}">
+	<meta name="viewport" content="width=device-width, initial-scale=1">	<!-- Mobile friendly -->
+	<!-- JavaScript Includes -->
+	<script src="{{ STATIC_URL }}js/jquery.js"></script>
+	<script src="{% static 'proyectos/js/jquery.min.js' %}"></script>
+	<!-- Formset extension -->
+	<script src="{{ STATIC_URL }}js/jquery.formset.js"></script>
+	<!-- Mi JS -->
+	<script src="{% static 'proyectos/js/scripts.js' %}"></script>
+	
+</head>
+
+<body>
+
+	<!-- Static navbar -->
+    <nav class="navbar navbar-default navbar-static-top">
+      <div class="container">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="{% url 'proyectos:index' %}">Gestión de proyectos</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li class="active"><a href="{% url 'proyectos:index' %}">Inicio</a></li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+			{% if user.is_authenticated %}
+				<li><a href="{% url 'proyectos:usuario' user.id %}">Conectado como: {{ user.username }}</a></li>
+				<li><a href="{% url 'proyectos:logout' %}">Logout</a></li>
+			{% else %}
+				<li><a href="{% url 'proyectos:login' %}">Login</a></li>
+            {% endif %}
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>
+
+	<!-- Menú izquierdo flotante -->
+	{% if user.is_authenticated %}
+	<div id="izquierda" class="list-group">
+		<h2>&nbsp Menú</h2>
+		<a href="{% url 'proyectos:index' %}" class="list-group-item">Inicio</a>
+		<a href="{% url 'proyectos:usuario' user.id %}" class="list-group-item">Mis datos</a>
+		<a href="{% url 'proyectos:usuarios' %}" class="list-group-item">Listado de usuarios</a>
+		{% if perms.auth.es_project_manager %}
+				<a href="{% url 'proyectos:nuevo_proyecto' %}" class="list-group-item">Nuevo proyecto</a>
+				<a href="{% url 'proyectos:terminados' %}" class="list-group-item">Proyectos terminados</a>
+		{% endif %}
+		<a href="{% url 'proyectos:tareas_terminadas' %}" class="list-group-item">Mis tareas terminadas</a>
+	</div>
+	{% endif %}
+
+	<!-- Bloque principal -->
+	<div id="contenido" class="container">
+		{% block content %}{% endblock %}
+	</div>
+
+	<!-- Pie de páginal -->
+	<footer class="footer" id="footer">
+      <div class="container">
+        <p class="text-muted">
+			<b>Gestión de proyectos de traducción.</b> Realizado por José María Fernández Campos.<a href="#">Ir arriba △</a>
+		</p>
+      </div>
+    </footer>
+
+</body>
+</html>

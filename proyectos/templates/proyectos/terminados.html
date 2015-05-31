@@ -1,0 +1,22 @@
+{% extends 'proyectos/base.html' %}
+
+{% block content %}
+	<h1>Lista de proyectos finalizados:</h1>	<!-- Sólo proyectos asociados al PM -->
+	{% if lista_proyectos %}
+		<table class="table table-hover">
+			<tr class="active">
+				<th>Nombre</th>
+				<th>Fecha de publicación</th>
+			</tr>
+		
+			{% for proyecto in lista_proyectos %}
+			<tr>
+				<td><a href="{% url 'proyectos:proyecto' proyecto.id %}">{{ proyecto.nombre }}</a></td>
+				<td>{{ proyecto.fecha_pub }}</td>
+			</tr>
+			{% endfor %}
+		</table>
+	{% else %}
+		<p>No se han encontrado proyectos para mostrar.</p>
+	{% endif %}
+{% endblock %}

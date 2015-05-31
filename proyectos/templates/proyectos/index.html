@@ -1,0 +1,69 @@
+{% extends 'proyectos/base.html' %}
+
+{% block content %}
+{% if user.is_authenticated %}
+
+	<!-- Tabla de tareas pendientes -->
+	<h2>Listado de tareas pendientes:</h2>
+	{% if tareas_pendientes %}
+		<table class="table table-hover" id="tarea">
+			<tr class="active">
+				<th>Nombre</th>
+				<th>Proyecto</th>
+				<th>Project Manager</th>
+				<th>Número de horas</th>
+				<th>Comentario</th>
+				<th>Archivo original</th>
+				<th>Archivo traducido</th>
+			</tr>
+		
+			{% for tarea in tareas_pendientes %}
+			<tr>
+				<td><a href="{% url 'proyectos:tarea' tarea.proyecto.id tarea.id %}">{{ tarea.nombre }}</a></td>
+				<td>{{ tarea.proyecto.nombre }}</td>
+				<td>{{ tarea.proyecto.creador.username }}</td>
+				<td>{{ tarea.num_horas }}</td>
+				<td>{{ tarea.comentario }}</td>
+				{% if tarea.original %}			<!-- Para que se pueda descargar sin entrar a la tarea -->
+					<td><a href="{{ tarea.original.url }}">{{ tarea.filename_o }}</a></td>
+					{% if tarea.traducido %}
+						<td><a href="{{ tarea.traducido.url }}">{{ tarea.filename_t }}</a></td>
+					{% endif %}
+				{% endif %}
+			</tr>
+			{% endfor %}
+		</table>
+		<br><br>
+	{% else %}
+		<p>No se han encontrado tareas para mostrar.</p>
+	{% endif %}
+	
+	<!-- Si es PM, muestra proyectos activos asociados a él -->
+	{% if perms.auth.es_project_manager %}
+		<h2>Listado de proyectos activos:</h2>
+		{% if proyectos_pendientes %}
+			<table class="table table-hover">
+				<tr class="active">
+					<th>Nombre</th>
+					<th>Fecha de publicación</th>
+				</tr>
+		
+				{% for proyecto in proyectos_pendientes %}
+				<tr>
+					<td><a href="{% url 'proyectos:proyecto' proyecto.id %}">{{ proyecto.nombre }}</a></td>
+					<td>{{ proyecto.fecha_pub }}</td>
+				</tr>
+				{% endfor %}
+			</table>
+		{% else %}
+			<p>No se han encontrado proyectos para mostrar.</p>
+		{% endif %}
+	{% endif %}
+	
+{% else %}		<!-- No hay sesión activa -->
+	<h1>Gestión de proyectos de traducción</h1>
+	<h2>Por favor, <a href="{% url 'proyectos:nuevo_proyecto' %}">inicie sesión</a> para acceder a la plataforma.</h2>
+{% endif %}
+{% endblock %}
+
+

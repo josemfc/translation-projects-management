@@ -1,0 +1,34 @@
+{% extends 'proyectos/base.html' %}
+
+{% block content %}
+	<h1>Lista de tareas finalizadas:</h1>	<!-- Sólo tareas relacionadas con el usuario -->
+	{% if lista_tareas %}
+		<table class="table table-hover">
+			<tr class="active">
+				<th>Nombre</th>
+				<th>Proyecto</th>
+				<th>Número de horas</th>
+				<th>Comentario</th>
+				<th>Archivo original</th>
+				<th>Archivo traducido</th>
+			</tr>
+		
+			{% for tarea in lista_tareas %}
+			<tr>
+				<td><a href="{% url 'proyectos:tarea' tarea.proyecto.id tarea.id %}">{{ tarea.nombre }}</a></td>
+				<td>{{ tarea.proyecto.nombre }}</td>
+				<td>{{ tarea.num_horas }}</td>
+				<td>{{ tarea.comentario }}</td>
+				{% if tarea.original %}
+				<td><a href="{{ tarea.original.url }}">{{ tarea.filename_o }}</a></td>
+				{% if tarea.traducido %}
+					<td><a href="{{ tarea.traducido.url }}">{{ tarea.filename_t }}</a></td>
+				{% endif %}
+			{% endif %}
+			</tr>
+			{% endfor %}
+		</table>
+	{% else %}
+		<p>No se han encontrado proyectos para mostrar.</p>
+	{% endif %}
+{% endblock %}

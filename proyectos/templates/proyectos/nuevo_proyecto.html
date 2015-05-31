@@ -1,0 +1,81 @@
+{% extends 'proyectos/base.html' %}
+{% load formset_tags %}
+
+{% block content %}
+	<h2>Nuevo proyecto:</h2>
+	<form method="post" action="">
+		{% csrf_token %}
+		
+		<!-- Formulario del proyecto -->
+		<!--<p>{{ pform.non_field_errors }}</p>-->
+		<table class="table table-hover">
+			{{ pform.as_table }}
+		</table>
+
+		<h3>Tarea/s:</h3>
+		<p>Si una tarea queda con todos sus campos vacíos no se contará.</p>
+		
+		<!-- FORMSET -->
+		<div id="formset" data-formset-prefix="{{ formset.prefix }}">
+			{{ formset.management_form }}
+
+			<!-- Formulario inicial y nuevos con errores -->
+			<div data-formset-body>
+				{% for form in formset %}
+				<div data-formset-form>
+					<b>{{ form.non_field_errors }}</b>
+					<table class="table table-striped">
+						<thead><tr>
+							{% for field in form %}
+								<th>{{ field.label }}</th>
+							{% endfor %}
+						</tr></thead>
+
+						<tr>
+							{% for field in form %}
+								<td>
+									{{ field.errors }}
+									{{ field }}
+								</td>
+							{% endfor %}
+						</tr>
+					</table>
+				</div>
+				{% endfor %}
+			</div>
+
+			<!-- Aspecto de los formularios que se agreguen -->
+			<script type="form-template" data-formset-empty-form>
+				{% escapescript %}
+				<div data-formset-form>
+					<table class="table table-striped table-condensed">
+						<tr>
+						{% for field in formset.empty_form %}
+						<td>
+							{{ field.errors }}
+							{{ field }}
+						</td>
+						{% endfor %}
+						</tr>
+					</table>
+				</div>
+
+				{% endescapescript %}
+			</script>
+
+			<input type="button" class="btn btn-success" value="Añadir otra tarea" data-formset-add>
+
+			<!-- Animar al aparecer uno nuevo -->
+			<script>jQuery(function($) {
+				$("#formset").formset({
+					animateForms: true
+				});
+			});</script>
+		
+		</div> <!-- formset div -->
+
+		<br>
+		<input type="submit" class="btn btn-primary" value="Enviar">
+	</form>
+
+{% endblock %}

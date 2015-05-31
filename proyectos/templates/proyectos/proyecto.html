@@ -1,0 +1,71 @@
+{% extends 'proyectos/base.html' %}
+
+{% block content %}
+{% if user.id == proyecto.creador.id %}
+	<h1>Datos del proyecto:</h1>
+	<table class="table table-hover">
+		<tr class="active">
+			<th>Nombre</th>
+			<th>Fecha de publicación</th>
+			<th>Project Manager</th>
+			<th>¿Terminado?</th>
+		</tr>
+		
+		<tr>
+			<td>{{ proyecto.nombre }}</td>
+			<td>{{ proyecto.fecha_pub }}</td>
+			<td><a href="{%url 'proyectos:usuario' proyecto.creador.id %}">{{ proyecto.creador.username }}</a></td>
+			<td>
+				{% if proyecto.terminado %}
+					Sí
+				{% else %}
+					No
+				{% endif %}
+			</td>
+		</tr>
+	</table>
+	<br>
+	
+	<h2>Tareas del proyecto</h2>
+	<table class="table table-hover">
+		<tr class="active">
+			<th>Nombre</th>
+			<th>Asignada a</th>
+			<th>Número de horas</th>
+			<th>Comentario</th>
+			<th>Archivo original</th>
+			<th>Archivo traducido</th>
+			<th>¿Terminada?</th>
+		</tr>
+		
+		{% for tarea in proyecto.tarea_set.all %}
+		<tr>
+			<td><a href="{% url 'proyectos:tarea' tarea.proyecto.id tarea.id %}">{{ tarea.nombre }}</a></td>
+			<td><a href="{% url 'proyectos:usuario' tarea.asignada_a.id %}">{{ tarea.asignada_a.username }}</a></td>
+			<td>{{ tarea.num_horas }}</td>
+			<td>{{ tarea.comentario }}</td>
+			<td>
+				{% if tarea.original %}
+					<a href="{{ tarea.original.url }}">{{ tarea.filename_o }}</a>
+				{% endif %}
+			</td>
+			<td>
+				{% if tarea.traducido %}
+					<a href="{{ tarea.traducido.url }}">{{ tarea.filename_t }}</a>
+				{% endif %}
+			</td>
+			<td>
+				{% if tarea.terminada %}
+					Sí
+				{% else %}
+					No
+				{% endif %}
+			</td>
+		</tr>
+		{% endfor %}
+	</table>
+
+{% else %}
+	<h2><b>Aviso:</b> Sólo el PM creador de este proyecto (<a href="{%url 'proyectos:usuario' proyecto.creador.id %}">{{ proyecto.creador.username }}</a>) puede visualizar esta página.</h2>
+{% endif %}
+{% endblock %}

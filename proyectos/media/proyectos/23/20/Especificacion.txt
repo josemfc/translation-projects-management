@@ -1,0 +1,26 @@
+La idea es crear un sistema que permita (a través de una interfaz web) automatizar un flujo de asignación de tareas: crear un proyecto y asignar cada una de las tareas del proyecto, en orden sucesivo, a distintas personas. 
+
+1. Se crea una base de datos para introducir información de personas a las que se pueden asignar tareas (en este caso, 
+PMs (Project Managers), traductores y revisores), con sus direcciones de correo electrónico.
+
+2. El PM accede a la interfaz web, crea el proyecto dividido en tareas (tarea 1, tarea 2, tarea 3...), 
+cada una con su carpeta, y asigna cada tarea a una persona de la base de datos.
+
+3. El sistema envia un correo a la persona 1 encargada de la tarea 1, notificándole que le ha sido asignada una tarea, 
+e incluye un enlace para que pueda descargar los archivos asignados a esa tarea de la carpeta 1.
+
+4. Cuando la persona 1 acaba la tarea 1, inicia la sesión en la interfaz web y carga los archivos acabados, 
+que se guardarán en la carpeta 2.
+
+5. El sistema envia un correo a la persona 2 encargada de la tarea 2, notificándole que le ha sido asignada una tarea, 
+e incluye un enlace para que pueda descargar los archivos asignados a esa tarea de la carpeta 2.
+
+4. Cuando la persona 2 acaba la tarea 2, inicia la sesión en la interfaz web y carga los archivos acabados, que se guardarán en la carpeta 3.
+
+El proceso se repite tantas veces como tareas sean necesarias.
+
+5. Al acabar, el PM (que sería la persona última) recibe una notificación por correo electrónico, como los demás, y descarga los archivos acabados para entregarlos al cliente.
+
+En el caso de una agencia de traducción, tendríamos PM (persona 3), traductor (persona 1) y revisor (persona 2).
+
+El sistema sería suficientemente flexible como para permitir añadir en un futuro interfaces web intermedias para realizar cada una de las tareas, y no habría limitación al número de tareas que se podrían añadir. Por ejemplo, se podría añadir una interfaz para que el traductor tradujera, otra para que el revisor revisara, etc. Y se podrían añadir tareas de facturación, etc.
