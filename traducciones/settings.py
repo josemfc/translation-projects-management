@@ -23,7 +23,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = os.environ["SECRET_KEY"]
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 
 #ALLOWED_HOSTS = []
@@ -41,6 +41,7 @@ INSTALLED_APPS = (
     'jquery',
     'djangoformsetjs',
     'proyectos',
+    'gdstorage',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -153,3 +154,9 @@ STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.FileSystemFinder',
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
 )
+
+
+# Almacenar y descargar online
+GOOGLE_DRIVE_STORAGE_KEY = 'AIzaSyDn9DM_IS0oT178jpImBsf2MXbQzkU7fuo'
+GOOGLE_DRIVE_STORAGE_SERVICE_EMAIL = 'chema27390@gmail.com'
+
