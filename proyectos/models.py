@@ -15,10 +15,9 @@ class Proyecto(models.Model):
 		return self.nombre
 
 
-"""# heroku puede dar problemas a la hora de crear ficheros
 def upload_path_handler(instance, filename):	# Indica dónde subir archivo
     return "proyectos/{id_p}/{id_t}/{f}".format(id_p=instance.proyecto.id, id_t=instance.id, f=filename)
-"""
+
 
 class Tarea(models.Model):
 	proyecto = models.ForeignKey(Proyecto)
@@ -27,10 +26,8 @@ class Tarea(models.Model):
 	comentario = models.CharField(max_length=300, null=True, blank=True)
 	terminada = models.BooleanField(default=False)
 	num_horas = models.IntegerField('Num. de horas estimado')
-	#original = models.FileField('Texto original', upload_to=upload_path_handler, null=True, blank=True)
-	#traducido = models.FileField('Texto traducido', upload_to=upload_path_handler, null=True, blank=True)
-	original = models.FileField('Texto original', null=True, blank=True)
-	traducido = models.FileField('Texto traducido', null=True, blank=True)
+	original = models.FileField('Texto original', upload_to=upload_path_handler, null=True, blank=True)
+	traducido = models.FileField('Texto traducido', upload_to=upload_path_handler, null=True, blank=True)
 	TIPO_TAREA = (
 		('T', 'Traducción'),
 		('R', 'Revisión'),
