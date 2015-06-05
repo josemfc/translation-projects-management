@@ -16,7 +16,7 @@ class Proyecto(models.Model):
 
 
 def upload_path_handler(instance, filename):	# Indica dónde subir archivo
-    return "proyectos/{id_p}/{id_t}/{f}".format(id_p=instance.proyecto.id, id_t=instance.id, f=filename)
+    return "{id_p}/{id_t}/{f}".format(id_p=instance.proyecto.id, id_t=instance.id, f=filename)
 
 
 class Tarea(models.Model):
