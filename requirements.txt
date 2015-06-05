@@ -6,6 +6,7 @@ django-appconf==1.0.1
 django-formset-js==0.4.3
 django-jquery-js==2.1.4
 django-storages==1.1.8
+-e git+https://github.com/jschneier/django-storages-redux.git@47f373ef6f18e467844aa67b06cb4736d9cad958#egg=django_storages_redux-master
 django-toolbelt==0.0.1
 google-api-python-client==1.4.0
 gunicorn==19.3.0
