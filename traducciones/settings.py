@@ -41,7 +41,7 @@ INSTALLED_APPS = (
     'jquery',
     'djangoformsetjs',
     'proyectos',
-    'gdstorage',
+    'storages',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -134,7 +134,7 @@ DEFAULT_FROM_EMAIL = 'chema27390@gmail.com'
 
 # Media
 #MEDIA_ROOT = '
-MEDIA_URL = '/media/'
+#MEDIA_URL = '/media/'
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.8/howto/static-files/
@@ -157,6 +157,10 @@ STATICFILES_FINDERS = (
 
 
 # Almacenar y descargar online
-GOOGLE_DRIVE_STORAGE_KEY = 'AIzaSyDn9DM_IS0oT178jpImBsf2MXbQzkU7fuo'
-GOOGLE_DRIVE_STORAGE_SERVICE_EMAIL = 'chema27390@gmail.com'
+AWS_QUERYSTRING_AUTH = False
+AWS_ACCESS_KEY_ID = os.environ['AWS_ACCESS_KEY_ID']
+AWS_SECRET_ACCESS_KEY = os.environ['AWS_SECRET_ACCESS_KEY']
+AWS_STORAGE_BUCKET_NAME = os.environ['S3_BUCKET_NAME']
+MEDIA_URL = 'http://%s.s3.amazonaws.com/' % AWS_STORAGE_BUCKET_NAME
+DEFAULT_FILE_STORAGE = "storages.backends.s3boto.S3BotoStorage"
 

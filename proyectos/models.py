@@ -4,10 +4,6 @@ from django.db import models
 from django.contrib.auth.models import User
 import os
 
-from gdstorage.storage import GoogleDriveStorage
-
-gd_storage = GoogleDriveStorage() # Define Google Drive Storage
-
 
 class Proyecto(models.Model):
 	creador = models.ForeignKey(User)
@@ -31,10 +27,8 @@ class Tarea(models.Model):
 	comentario = models.CharField(max_length=300, null=True, blank=True)
 	terminada = models.BooleanField(default=False)
 	num_horas = models.IntegerField('Num. de horas estimado')
-	#original = models.FileField('Texto original', upload_to=upload_path_handler, null=True, blank=True)
-	#traducido = models.FileField('Texto traducido', upload_to=upload_path_handler, null=True, blank=True)
-	original = models.FileField('Texto original', storage=gd_storage, null=True, blank=True)
-	traducido = models.FileField('Texto traducido', storage=gd_storage, null=True, blank=True)
+	original = models.FileField('Texto original', upload_to=upload_path_handler, null=True, blank=True)
+	traducido = models.FileField('Texto traducido', upload_to=upload_path_handler, null=True, blank=True)
 	TIPO_TAREA = (
 		('T', 'Traducción'),
 		('R', 'Revisión'),
