@@ -128,9 +128,9 @@ LOGIN_URL = '/proyectos/login/'
 EMAIL_USE_TLS = True
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
-EMAIL_HOST_USER = 'chema27390@gmail.com'
-EMAIL_HOST_PASSWORD = 'zfvyheblsakdolpj'
-DEFAULT_FROM_EMAIL = 'chema27390@gmail.com'
+EMAIL_HOST_USER = os.environ['EMAIL_HOST_USER']
+EMAIL_HOST_PASSWORD = os.environ['EMAIL_HOST_PASSWORD']
+DEFAULT_FROM_EMAIL = os.environ['DEFAULT_FROM_EMAIL']
 
 # Media
 #MEDIA_ROOT = '
