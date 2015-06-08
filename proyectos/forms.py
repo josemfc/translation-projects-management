@@ -1,6 +1,7 @@
 from django import forms
 from django.contrib.auth.models import User
 from proyectos.models import Proyecto, Tarea
+from djangoformsetjs.utils import formset_media_js
 
 class LoginForm (forms.Form):
 	name = forms.CharField (label      = 'Nombre de usuario', 
@@ -76,6 +77,9 @@ class ProyectoForm(forms.ModelForm):
 
 
 class TareaForm(forms.ModelForm):
+	class Media(object):
+		js = formset_media_js
+	
 	class Meta:
 		model = Tarea
 		exclude = ('proyecto', 'terminada', 'original', 'traducido', 'id') # Con formset es necesario excluir id
