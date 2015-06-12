@@ -11,12 +11,12 @@
 		
 			{% for proyecto in lista_proyectos %}
 			<tr>
-				<td><a href="{% url 'proyectos:proyecto' proyecto.id %}">{{ proyecto.nombre }}</a></td>
+				<td><a href="{% url 'proyectos:proyecto' proyecto.id %}"><span class="glyphicon glyphicon-briefcase"></span> {{ proyecto.nombre }}</a></td>
 				<td>{{ proyecto.fecha_pub }}</td>
 			</tr>
 			{% endfor %}
 		</table>
 	{% else %}
-		<p>No se han encontrado proyectos para mostrar.</p>
+		<p><span class="glyphicon glyphicon-warning-sign"></span> No se han encontrado proyectos para mostrar.</p>
 	{% endif %}
 {% endblock %}

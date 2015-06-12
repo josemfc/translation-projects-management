@@ -12,9 +12,9 @@
 		</tr>
 		
 		<tr>
-			<td>{{ proyecto.nombre }}</td>
+			<td><span class="glyphicon glyphicon-briefcase"></span> {{ proyecto.nombre }}</td>
 			<td>{{ proyecto.fecha_pub }}</td>
-			<td><a href="{%url 'proyectos:usuario' proyecto.creador.id %}">{{ proyecto.creador.username }}</a></td>
+			<td><a href="{%url 'proyectos:usuario' proyecto.creador.id %}"><span class="glyphicon glyphicon-user"></span> {{ proyecto.creador.username }}</a></td>
 			<td>
 				{% if proyecto.terminado %}
 					Sí
@@ -40,18 +40,18 @@
 		
 		{% for tarea in proyecto.tarea_set.all %}
 		<tr>
-			<td><a href="{% url 'proyectos:tarea' tarea.proyecto.id tarea.id %}">{{ tarea.nombre }}</a></td>
-			<td><a href="{% url 'proyectos:usuario' tarea.asignada_a.id %}">{{ tarea.asignada_a.username }}</a></td>
+			<td><a href="{% url 'proyectos:tarea' tarea.proyecto.id tarea.id %}"><span class="glyphicon glyphicon-folder-closed"></span> {{ tarea.nombre }}</a></td>
+			<td><a href="{% url 'proyectos:usuario' tarea.asignada_a.id %}"><span class="glyphicon glyphicon-user"></span> {{ tarea.asignada_a.username }}</a></td>
 			<td>{{ tarea.num_horas }}</td>
 			<td>{{ tarea.comentario }}</td>
 			<td>
 				{% if tarea.original %}
-					<a href="{{ tarea.original.url }}">{{ tarea.filename_o }}</a>
+					<a href="{{ tarea.original.url }}"><span class="glyphicon glyphicon-download"></span> {{ tarea.filename_o }}</a>
 				{% endif %}
 			</td>
 			<td>
 				{% if tarea.traducido %}
-					<a href="{{ tarea.traducido.url }}">{{ tarea.filename_t }}</a>
+					<a href="{{ tarea.traducido.url }}"><span class="glyphicon glyphicon-download"> {{ tarea.filename_t }}</a>
 				{% endif %}
 			</td>
 			<td>
@@ -66,6 +66,6 @@
 	</table>
 
 {% else %}
-	<h2><b>Aviso:</b> Sólo el PM creador de este proyecto (<a href="{%url 'proyectos:usuario' proyecto.creador.id %}">{{ proyecto.creador.username }}</a>) puede visualizar esta página.</h2>
+	<h2><span class="glyphicon glyphicon-warning-sign"><b>Aviso:</b> Sólo el PM creador de este proyecto (<a href="{%url 'proyectos:usuario' proyecto.creador.id %}">{{ proyecto.creador.username }}</a>) puede visualizar esta página.</h2>
 {% endif %}
 {% endblock %}

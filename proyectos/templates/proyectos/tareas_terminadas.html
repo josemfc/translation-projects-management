@@ -15,20 +15,20 @@
 		
 			{% for tarea in lista_tareas %}
 			<tr>
-				<td><a href="{% url 'proyectos:tarea' tarea.proyecto.id tarea.id %}">{{ tarea.nombre }}</a></td>
+				<td><a href="{% url 'proyectos:tarea' tarea.proyecto.id tarea.id %}"><span class="glyphicon glyphicon-folder-closed"></span> {{ tarea.nombre }}</a></td>
 				<td>{{ tarea.proyecto.nombre }}</td>
 				<td>{{ tarea.num_horas }}</td>
 				<td>{{ tarea.comentario }}</td>
 				{% if tarea.original %}
-				<td><a href="{{ tarea.original.url }}">{{ tarea.filename_o }}</a></td>
+				<td><a href="{{ tarea.original.url }}"><span class="glyphicon glyphicon-download"> {{ tarea.filename_o }}</a></td>
 				{% if tarea.traducido %}
-					<td><a href="{{ tarea.traducido.url }}">{{ tarea.filename_t }}</a></td>
+					<td><a href="{{ tarea.traducido.url }}"><span class="glyphicon glyphicon-download"> {{ tarea.filename_t }}</span></a></td>
 				{% endif %}
 			{% endif %}
 			</tr>
 			{% endfor %}
 		</table>
 	{% else %}
-		<p>No se han encontrado proyectos para mostrar.</p>
+		<p><span class="glyphicon glyphicon-warning-sign"></span> No se han encontrado proyectos para mostrar.</p>
 	{% endif %}
 {% endblock %}

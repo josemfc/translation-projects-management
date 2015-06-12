@@ -27,12 +27,12 @@
 		<br><br>
 		
 		<!-- Dar de baja -->
-		<button id="mostrar_eliminar" type="button" class="btn btn-danger">Dar de baja</button>
+		<button id="mostrar_eliminar" type="button" class="btn btn-danger"><span class="glyphicon glyphicon-remove-sign"></span> Dar de baja</button>
 		<div class="eliminar">
-			<p>¿Está seguro de que desea eliminar todos los datos de {{ usuario.username }}?</p>
+			<br>
+			<p><span class="glyphicon glyphicon-warning-sign"></span>¿Está seguro de que desea eliminar todos los datos de {{ usuario.username }}?</p>
 			<a href="{% url 'proyectos:baja' usuario.id %}"> 
-				<button id="eliminar" type="button" class="btn btn-danger">Sí, dar de baja</button>
-			</a>
+				<button id="eliminar" type="button" class="btn btn-danger">Sí, dar de baja</button></a>
 			<button id="no_eliminar" type="button" class="btn btn-info">No</button>
 		</div>
 		<br><br>

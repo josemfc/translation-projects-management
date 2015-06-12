@@ -10,8 +10,8 @@
 		</tr>
 		{% for user in lista_usuarios %}
 			<tr>
-				<td><a href="{% url 'proyectos:usuario' user.id %}">{{ user.username }}</a></td>
-				<td>{{ user.email }}</td>
+				<td><a href="{% url 'proyectos:usuario' user.id %}"><span class="glyphicon glyphicon-user"></span> {{ user.username }}</a></td>
+				<td><span class="glyphicon glyphicon-envelope"></span> {{ user.email }}</td>
 			</tr>
 		{% endfor %}
 	</table>
@@ -19,7 +19,7 @@
 
 	<!-- Formulario de nuevo usuario -->
 	{% if perms.auth.es_project_manager %}
-	<button class="nuevo_form btn btn-info">Añadir usuario</button>
+	<button class="nuevo_form btn btn-info"><span class="glyphicon glyphicon-plus-sign"></span> Añadir usuario</button>
 	<div class="formulario">
 		<h2 class="form-heading">Crear nuevo usuario</h2>
 		<form role="form" method="post" action="">
