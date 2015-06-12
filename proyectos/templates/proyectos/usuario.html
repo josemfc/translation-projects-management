@@ -32,15 +32,15 @@
 			<br>
 			<p><span class="glyphicon glyphicon-warning-sign"></span>¿Está seguro de que desea eliminar todos los datos de {{ usuario.username }}?</p>
 			<a href="{% url 'proyectos:baja' usuario.id %}"> 
-				<button id="eliminar" type="button" class="btn btn-danger">Sí, dar de baja</button></a>
-			<button id="no_eliminar" type="button" class="btn btn-info">No</button>
+				<button id="eliminar" type="button" class="btn btn-primary">Sí, dar de baja</button></a>
+			<button id="no_eliminar" type="button" class="btn btn-primary">No</button>
 		</div>
 		<br><br>
 	{% endif %}
 
 	<!-- Formulario para cambiar de contraseña -->
 	{% if user.username == usuario.username %}
-		<button class="nuevo_form btn btn-info">Cambiar contraseña</button>
+		<button class="nuevo_form btn btn-info"><span class="glyphicon glyphicon-lock"> Cambiar contraseña</button>
 		<div class="formulario">
 			<h2>Cambiar contraseña</h2>
 			<form role="form" method="post" action="">
