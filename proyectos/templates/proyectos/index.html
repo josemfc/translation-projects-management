@@ -20,14 +20,14 @@
 			{% for tarea in tareas_pendientes %}
 			<tr>
 				<td><a href="{% url 'proyectos:tarea' tarea.proyecto.id tarea.id %}"><span class="glyphicon glyphicon-folder-close"></span> {{ tarea.nombre }}</a></td>
-				<td><span class="glyphicon glyphicon-briefcase"> {{ tarea.proyecto.nombre }}</td>
+				<td><span class="glyphicon glyphicon-briefcase">{{ tarea.proyecto.nombre }}</td>
 				<td><span class="glyphicon glyphicon-user"></span> {{ tarea.proyecto.creador.username }}</td>
-				<td><span class="glyphicon glyphicon-time"> {{ tarea.num_horas }}</td>
+				<td><span class="glyphicon glyphicon-time">{{ tarea.num_horas }}</td>
 				<td>{{ tarea.comentario }}</td>
 				{% if tarea.original %}			<!-- Para que se pueda descargar sin entrar a la tarea -->
-					<td><a href="{{ tarea.original.url }}"><span class="glyphicon glyphicon-download"> {{ tarea.filename_o }}</span></a></td>
+					<td><a href="{{ tarea.original.url }}"><span class="glyphicon glyphicon-download">{{ tarea.filename_o }}</span></a></td>
 					{% if tarea.traducido %}
-						<td><a href="{{ tarea.traducido.url }}"><span class="glyphicon glyphicon-download"> {{ tarea.filename_t }}</span></a></td>
+						<td><a href="{{ tarea.traducido.url }}"><span class="glyphicon glyphicon-download">{{ tarea.filename_t }}</span></a></td>
 					{% endif %}
 				{% endif %}
 			</tr>
@@ -51,7 +51,7 @@
 				{% for proyecto in proyectos_pendientes %}
 				<tr>
 					<td><a href="{% url 'proyectos:proyecto' proyecto.id %}"><span class="glyphicon glyphicon-briefcase"></span> {{ proyecto.nombre }}</a></td>
-					<td>{{ proyecto.fecha_pub }}</td>
+					<td><span class="glyphicon glyphicon-calendar"> {{ proyecto.fecha_pub }}</td>
 				</tr>
 				{% endfor %}
 			</table>

@@ -58,6 +58,8 @@ body {
 
 .eliminar {
   display: none;
+  background-color: #eee;
+  width: 30%;
 }
 
 /* Tarea.html */
