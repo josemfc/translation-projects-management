@@ -34,14 +34,14 @@
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
-            <li class="active"><a href="{% url 'proyectos:index' %}">Inicio</a></li>
+            <li class="active"><a href="{% url 'proyectos:index' %}">Inicio <span class="glyphicon glyphicon-home"></span></a></li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
 			{% if user.is_authenticated %}
-				<li><a href="{% url 'proyectos:usuario' user.id %}">Conectado como: {{ user.username }}</a></li>
-				<li><a href="{% url 'proyectos:logout' %}">Logout</a></li>
+				<li><a href="{% url 'proyectos:usuario' user.id %}">Conectado como: {{ user.username }}<span class="glyphicon glyphicon-user"></span></a></li>
+				<li><a href="{% url 'proyectos:logout' %}">Logout <span class="glyphicon glyphicon-log-out"></span></a></li>
 			{% else %}
-				<li><a href="{% url 'proyectos:login' %}">Login</a></li>
+				<li><a href="{% url 'proyectos:login' %}">Login <span class="glyphicon glyphicon-log-in"></span></a></li>
             {% endif %}
           </ul>
         </div><!--/.nav-collapse -->
