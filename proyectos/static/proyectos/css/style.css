@@ -56,6 +56,10 @@ body {
   width: 40%;
 }
 
+.eliminar {
+  display: none;
+}
+
 /* Tarea.html */
 #archivos{
 	width: 50%;
