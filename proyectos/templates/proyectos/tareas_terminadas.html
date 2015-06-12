@@ -15,7 +15,7 @@
 		
 			{% for tarea in lista_tareas %}
 			<tr>
-				<td><a href="{% url 'proyectos:tarea' tarea.proyecto.id tarea.id %}"><span class="glyphicon glyphicon-folder-close"></span> {{ tarea.nombre }}</a></td>
+				<td><a href="{% url 'proyectos:tarea' tarea.proyecto.id tarea.id %}"><span class="glyphicon glyphicon-bookmark"></span> {{ tarea.nombre }}</a></td>
 				<td>{{ tarea.proyecto.nombre }}</td>
 				<td>{{ tarea.num_horas }}</td>
 				<td>{{ tarea.comentario }}</td>
