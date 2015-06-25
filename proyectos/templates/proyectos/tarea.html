@@ -25,7 +25,9 @@
 	<br>
 
 	<!-- Formulario para subir archivos -->
-	<h3>Subir o sustituir archivos</h4>
+	{% if perms.auth.es_project_manager or tarea.original %}
+		<h3>Subir o sustituir archivos</h4>
+	{% endif %}
 	<form action="{% url 'proyectos:tarea' proyecto.id tarea.id %}" method="post" enctype="multipart/form-data">
 		{% csrf_token %}
 		
