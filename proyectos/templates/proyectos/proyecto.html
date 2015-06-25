@@ -48,7 +48,7 @@
 				{% if tarea.original %}
 					<a href="{{ tarea.original.url }}"><span class="glyphicon glyphicon-download"></span> {{ tarea.filename_o }}</a>
 				{% else %}
-					<a class="btn btn-default" href="{% url 'proyectos:tarea' tarea.proyecto.id tarea.id %}">Subir archivo</a>
+					<a class="btn btn-default btn-xs" href="{% url 'proyectos:tarea' tarea.proyecto.id tarea.id %}">Subir archivo</a>
 				{% endif %}
 			</td>
 			<td>

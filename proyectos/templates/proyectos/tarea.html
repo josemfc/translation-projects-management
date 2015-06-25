@@ -31,18 +31,18 @@
 		
 		{% if perms.auth.es_project_manager %}
 			<h4>Original:</h4>
-			<span class="glyphicon glyphicon-upload"></span> {{ form.original }}
+			{{ form.original }}
 		{% endif %}
 		<br>
 		
 		{% if user.id == tarea.asignada_a.id and tarea.original %}
 			<h4>Traducción/revisión:</h4>
-			<span class="glyphicon glyphicon-upload"></span> {{ form.traducido }}
+			{{ form.traducido }}
 		{% endif %}
 		
 		{% if perms.auth.es_project_manager or tarea.original %}
 			<br>
-			<input type="submit" class="btn btn-primary" value="Subir archivo" />
+			<input type="submit" class="btn btn-primary" value="Subir archivo"><span class="glyphicon glyphicon-upload"></span></input>
 		{% endif %}
 	</form>
 	
