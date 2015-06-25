@@ -52,14 +52,19 @@
 	{% if user.is_authenticated %}
 	<div id="izquierda" class="list-group">
 		<h2>&nbsp Menú</h2>
-		<a href="{% url 'proyectos:index' %}" class="list-group-item">Inicio</a>
+		{% if perms.auth.es_project_manager %}
+			<a href="{% url 'proyectos:index' %}" class="list-group-item">Mis proyectos activos</a>
+		{%else %}
+			<a href="{% url 'proyectos:index' %}" class="list-group-item">Mis tareas pendientes</a>
+		{% endif %}
 		<a href="{% url 'proyectos:usuario' user.id %}" class="list-group-item">Mis datos</a>
 		<a href="{% url 'proyectos:usuarios' %}" class="list-group-item">Listado de usuarios</a>
 		{% if perms.auth.es_project_manager %}
-				<a href="{% url 'proyectos:nuevo_proyecto' %}" class="list-group-item">Nuevo proyecto</a>
-				<a href="{% url 'proyectos:terminados' %}" class="list-group-item">Proyectos terminados</a>
+			<a href="{% url 'proyectos:nuevo_proyecto' %}" class="list-group-item">Nuevo proyecto</a>
+			<a href="{% url 'proyectos:terminados' %}" class="list-group-item">Proyectos terminados</a>
+		{% else %}
+			<a href="{% url 'proyectos:tareas_terminadas' %}" class="list-group-item">Mis tareas terminadas</a>
 		{% endif %}
-		<a href="{% url 'proyectos:tareas_terminadas' %}" class="list-group-item">Mis tareas terminadas</a>
 	</div>
 	{% endif %}
 

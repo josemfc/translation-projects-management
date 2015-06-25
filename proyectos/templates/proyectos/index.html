@@ -3,6 +3,8 @@
 {% block content %}
 {% if user.is_authenticated %}
 
+	<!-- Si no es PM, muestrar tareas activas -->
+	{% if not perms.auth.es_project_manager %}
 	<!-- Tabla de tareas pendientes -->
 	<h2>Listado de tareas pendientes:</h2>
 	{% if tareas_pendientes %}
@@ -28,6 +30,8 @@
 					<td><a href="{{ tarea.original.url }}"><span class="glyphicon glyphicon-download"> {{ tarea.filename_o }}</span></a></td>
 					{% if tarea.traducido %}
 						<td><a href="{{ tarea.traducido.url }}"><span class="glyphicon glyphicon-download"> {{ tarea.filename_t }}</span></a></td>
+					{% else %}
+						<td><button class="btn btn-info"><a href="{% url 'proyectos:tarea' tarea.proyecto.id tarea.id %}">Subir archivo</a></button></td>
 					{% endif %}
 				{% endif %}
 			</tr>
@@ -36,6 +40,7 @@
 		<br><br>
 	{% else %}
 		<p><span class="glyphicon glyphicon-warning-sign"></span> No se han encontrado tareas para mostrar.</p>
+	{% endif %}
 	{% endif %}
 	
 	<!-- Si es PM, muestra proyectos activos asociados a él -->
@@ -51,7 +56,7 @@
 				{% for proyecto in proyectos_pendientes %}
 				<tr>
 					<td><a href="{% url 'proyectos:proyecto' proyecto.id %}"><span class="glyphicon glyphicon-briefcase"></span> {{ proyecto.nombre }}</a></td>
-					<td><span class="glyphicon glyphicon-calendar">{{ proyecto.fecha_pub }}</td>
+					<td><span class="glyphicon glyphicon-calendar"> {{ proyecto.fecha_pub }}</td>
 				</tr>
 				{% endfor %}
 			</table>
